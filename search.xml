@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>拓展欧几里得定理学习笔记</title>
+    <url>/2020/03/12/%E6%8B%93%E5%B1%95%E6%AC%A7%E5%87%A0%E9%87%8C%E5%BE%97%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>拓展欧几里得定理</p>
+<hr>
+<a id="more"></a>
+<p>求 $ax_1+by_1=\gcd(a,b)$</p>
+<p>设 $bx_2+(a\bmod b)y_2=\gcd(b,a \bmod b)$</p>
+<p>$\therefore \gcd(a,b)=\gcd(b,a \bmod b)$</p>
+<p>$\because ax_1+by_1=bx_2+(a\bmod b)y_2$</p>
+<p>又 $\therefore a \bmod b=a-\lfloor\frac{a}{b}\rfloor\times b$</p>
+<p>$\because ax_1+by_1=bx_2+(a-\lfloor\frac{a}{b}\rfloor\times b)y_2$</p>
+<p>我们利用乘法分配律，把这个式子展开</p>
+<p>$bx_2+(a-\lfloor\frac{a}{b}\rfloor\times b)y_2=bx_2+ay_2-\lfloor\frac{a}{b}\rfloor\times by_2$</p>
+<p>然后，我们把 $b$ 提出来</p>
+<p>$bx_2+ay_2-\lfloor\frac{a}{b}\rfloor\times by_2=ay_2-b(x_2-\lfloor\frac{a}{b}\rfloor \times y_2)$</p>
+<p>然后，我们发现 $x_1=y_2,y_1=x_2-\lfloor\frac{a}{b}\rfloor \times y_2$</p>
+<p>这样，代码就好写了。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b,<span class="keyword">int</span> &amp;x,<span class="keyword">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!b)&#123;</span><br><span class="line">        x=<span class="number">1</span>;</span><br><span class="line">        y=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> d=exgcd(b,a%b,x,y);</span><br><span class="line">    <span class="keyword">int</span> t=x;</span><br><span class="line">    x=y;</span><br><span class="line">    y=t-a/b*y;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>数论，数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>题解 P6148 【[USACO20FEB]Swapity Swapity Swap S】</title>
     <url>/2020/03/05/%E8%A7%A3-P6148-%E3%80%90-USACO20FEB-Swapity-Swapity-Swap-S%E3%80%91/</url>
     <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P6148" target="_blank" rel="noopener">题目地址</a> <a href="https://zhaohaikun.blog.luogu.org/solution-p6148" target="_blank" rel="noopener">我在洛谷的题解，大家去点赞啊</a></p>
@@ -287,8 +313,8 @@
         <category>模拟赛</category>
       </categories>
       <tags>
-        <tag>搜索</tag>
         <tag>dp</tag>
+        <tag>搜索</tag>
         <tag>分类讨论</tag>
         <tag>记忆化</tag>
       </tags>
