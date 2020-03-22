@@ -20,13 +20,13 @@
       
         <tags>
             
-            <tag> 枚举 </tag>
-            
-            <tag> 暴力 </tag>
+            <tag> 模拟 </tag>
             
             <tag> 搜索 </tag>
             
-            <tag> 模拟 </tag>
+            <tag> 枚举 </tag>
+            
+            <tag> 暴力 </tag>
             
             <tag> 排序 </tag>
             
@@ -92,11 +92,11 @@
       
         <tags>
             
+            <tag> 搜索 </tag>
+            
             <tag> 枚举 </tag>
             
             <tag> 暴力 </tag>
-            
-            <tag> 搜索 </tag>
             
         </tags>
       
@@ -368,11 +368,11 @@
       
         <tags>
             
+            <tag> bfs </tag>
+            
             <tag> 搜索 </tag>
             
             <tag> 位运算 </tag>
-            
-            <tag> bfs </tag>
             
         </tags>
       
@@ -519,8 +519,6 @@
       
         <tags>
             
-            <tag> 搜索 </tag>
-            
             <tag> 二分 </tag>
             
             <tag> 模拟 </tag>
@@ -528,6 +526,8 @@
             <tag> bfs </tag>
             
             <tag> dij </tag>
+            
+            <tag> 搜索 </tag>
             
         </tags>
       
@@ -664,9 +664,9 @@
       
         <tags>
             
-            <tag> 搜索 </tag>
-            
             <tag> bfs </tag>
+            
+            <tag> 搜索 </tag>
             
         </tags>
       
