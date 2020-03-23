@@ -527,9 +527,9 @@
         <category>usaco</category>
       </categories>
       <tags>
-        <tag>bfs</tag>
         <tag>搜索</tag>
         <tag>位运算</tag>
+        <tag>bfs</tag>
       </tags>
   </entry>
   <entry>
@@ -744,9 +744,9 @@
       <tags>
         <tag>二分</tag>
         <tag>模拟</tag>
+        <tag>搜索</tag>
         <tag>bfs</tag>
         <tag>dij</tag>
-        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -914,8 +914,8 @@
         <category>noip普及组</category>
       </categories>
       <tags>
-        <tag>bfs</tag>
         <tag>搜索</tag>
+        <tag>bfs</tag>
       </tags>
   </entry>
   <entry>
