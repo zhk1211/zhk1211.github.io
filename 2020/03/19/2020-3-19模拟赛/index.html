@@ -33,11 +33,11 @@
 <meta property="article:tag" content="模拟">
 <meta property="article:tag" content="排序">
 <meta property="article:tag" content="STL-priority_queue">
+<meta property="article:tag" content="搜索">
 <meta property="article:tag" content="枚举">
 <meta property="article:tag" content="暴力">
-<meta property="article:tag" content="搜索">
-<meta property="article:tag" content="数论，数学">
 <meta property="article:tag" content="贪心">
+<meta property="article:tag" content="数论，数学">
 <meta property="article:tag" content="位运算">
 <meta property="article:tag" content="二进制">
 <meta property="article:tag" content="分类讨论">
@@ -242,6 +242,14 @@
             </span>
 
           
+            <span id="/2020/03/19/2020-3-19%E6%A8%A1%E6%8B%9F%E8%B5%9B/" class="post-meta-item leancloud_visitors" data-flag-title="2020-3-19模拟赛题解" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+              <span>℃</span>
+            </span>
   
   <span class="post-meta-item">
     
@@ -355,11 +363,11 @@
               <a href="/tags/%E6%A8%A1%E6%8B%9F/" rel="tag"><i class="fa fa-tag"></i> 模拟</a>
               <a href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag"><i class="fa fa-tag"></i> 排序</a>
               <a href="/tags/STL-priority-queue/" rel="tag"><i class="fa fa-tag"></i> STL-priority_queue</a>
+              <a href="/tags/%E6%90%9C%E7%B4%A2/" rel="tag"><i class="fa fa-tag"></i> 搜索</a>
               <a href="/tags/%E6%9E%9A%E4%B8%BE/" rel="tag"><i class="fa fa-tag"></i> 枚举</a>
               <a href="/tags/%E6%9A%B4%E5%8A%9B/" rel="tag"><i class="fa fa-tag"></i> 暴力</a>
-              <a href="/tags/%E6%90%9C%E7%B4%A2/" rel="tag"><i class="fa fa-tag"></i> 搜索</a>
-              <a href="/tags/%E6%95%B0%E8%AE%BA%EF%BC%8C%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 数论，数学</a>
               <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
+              <a href="/tags/%E6%95%B0%E8%AE%BA%EF%BC%8C%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 数论，数学</a>
               <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag"><i class="fa fa-tag"></i> 位运算</a>
               <a href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/" rel="tag"><i class="fa fa-tag"></i> 二进制</a>
               <a href="/tags/%E5%88%86%E7%B1%BB%E8%AE%A8%E8%AE%BA/" rel="tag"><i class="fa fa-tag"></i> 分类讨论</a>
@@ -556,6 +564,95 @@
 
 
 
+  <script>
+  function leancloudSelector(url) {
+    url = encodeURI(url);
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = decodeURI(visitors.getAttribute('id'));
+      var title = visitors.getAttribute('data-flag-title');
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+              .catch(error => {
+                console.error('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return decodeURI(element.getAttribute('id'));
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (let item of results) {
+            let { url, time } = item;
+            leancloudSelector(url).innerText = time;
+          }
+          for (let url of entries) {
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.error('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=4Vq4xaLG1WLhjKGT9tRYVpDh-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id'     : '4Vq4xaLG1WLhjKGT9tRYVpDh-gzGzoHsz',
+            'X-LC-Key'    : 'RAuXHPeTS1y9n4fi5V3ioyqz',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        if (CONFIG.hostname !== location.hostname) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
 
 
       </div>
