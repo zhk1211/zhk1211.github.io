@@ -74,11 +74,11 @@
         <tag>模拟</tag>
         <tag>排序</tag>
         <tag>STL-priority_queue</tag>
-        <tag>搜索</tag>
         <tag>枚举</tag>
         <tag>暴力</tag>
-        <tag>贪心</tag>
+        <tag>搜索</tag>
         <tag>数论，数学</tag>
+        <tag>贪心</tag>
         <tag>位运算</tag>
         <tag>二进制</tag>
         <tag>分类讨论</tag>
@@ -148,9 +148,9 @@
         <category>模拟赛</category>
       </categories>
       <tags>
-        <tag>搜索</tag>
         <tag>枚举</tag>
         <tag>暴力</tag>
+        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -528,8 +528,8 @@
       </categories>
       <tags>
         <tag>搜索</tag>
-        <tag>位运算</tag>
         <tag>bfs</tag>
+        <tag>位运算</tag>
       </tags>
   </entry>
   <entry>
@@ -634,8 +634,8 @@
       </categories>
       <tags>
         <tag>搜索</tag>
-        <tag>状压</tag>
         <tag>记忆化</tag>
+        <tag>状压</tag>
         <tag>STL-vector</tag>
       </tags>
   </entry>
