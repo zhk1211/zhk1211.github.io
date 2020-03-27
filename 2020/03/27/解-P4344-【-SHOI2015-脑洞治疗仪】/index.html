@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://i.loli.net/2020/03/27/cVXrQhiG9YbxwIW.png">
 <meta property="og:image" content="https://i.loli.net/2020/03/27/kVchXdzs7QT5BnL.png">
 <meta property="article:published_time" content="2020-03-27T02:55:00.000Z">
-<meta property="article:modified_time" content="2020-03-27T02:58:30.852Z">
+<meta property="article:modified_time" content="2020-03-27T03:40:34.051Z">
 <meta property="article:author" content="zhk1211">
 <meta property="article:tag" content="二分">
 <meta property="article:tag" content="线段树">
@@ -221,7 +221,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-27 10:55:00 / 修改时间：10:58:30" itemprop="dateCreated datePublished" datetime="2020-03-27T10:55:00+08:00">2020-03-27</time>
+              <time title="创建时间：2020-03-27 10:55:00 / 修改时间：11:40:34" itemprop="dateCreated datePublished" datetime="2020-03-27T10:55:00+08:00">2020-03-27</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -591,6 +591,53 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
