@@ -22,26 +22,19 @@
 
   <meta name="description" content="题目地址 我在洛谷的题解，大家去点赞啊">
 <meta property="og:type" content="article">
-<meta property="og:title" content="题解 P6249 【神帖】">
-<meta property="og:url" content="zhk1211.zhaohaikun.cn/2020/03/29/%E9%A2%98%E8%A7%A3-P6249-%E3%80%90%E7%A5%9E%E5%B8%96%E3%80%91/index.html">
+<meta property="og:title" content="题解 P2821 【变幻数】">
+<meta property="og:url" content="zhk1211.zhaohaikun.cn/2020/03/29/%E9%A2%98%E8%A7%A3-P2821-%E3%80%90%E5%8F%98%E5%B9%BB%E6%95%B0%E3%80%91/index.html">
 <meta property="og:site_name" content="ZHK">
 <meta property="og:description" content="题目地址 我在洛谷的题解，大家去点赞啊">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.loli.net/2020/03/29/7CFxNZ5Td934PfQ.jpg">
-<meta property="og:image" content="https://i.loli.net/2020/03/29/8y6AYmiXVOZE3eC.jpg">
-<meta property="og:image" content="https://i.loli.net/2020/03/29/3pXduqao6vD8kcW.jpg">
-<meta property="og:image" content="https://i.loli.net/2020/03/29/D2pEfsChBbWP65N.jpg">
-<meta property="og:image" content="https://i.loli.net/2020/03/29/8y6AYmiXVOZE3eC.jpg">
-<meta property="article:published_time" content="2020-03-29T04:02:00.000Z">
-<meta property="article:modified_time" content="2020-03-29T04:07:39.439Z">
+<meta property="article:published_time" content="2020-03-29T09:55:00.000Z">
+<meta property="article:modified_time" content="2020-03-29T10:00:02.346Z">
 <meta property="article:author" content="zhk1211">
-<meta property="article:tag" content="排序">
-<meta property="article:tag" content="dp">
-<meta property="article:tag" content="区间dp">
+<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="高精">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.loli.net/2020/03/29/7CFxNZ5Td934PfQ.jpg">
 
-<link rel="canonical" href="zhk1211.zhaohaikun.cn/2020/03/29/%E9%A2%98%E8%A7%A3-P6249-%E3%80%90%E7%A5%9E%E5%B8%96%E3%80%91/">
+<link rel="canonical" href="zhk1211.zhaohaikun.cn/2020/03/29/%E9%A2%98%E8%A7%A3-P2821-%E3%80%90%E5%8F%98%E5%B9%BB%E6%95%B0%E3%80%91/">
 
 
 <script id="page-configurations">
@@ -53,7 +46,7 @@
   };
 </script>
 
-  <title>题解 P6249 【神帖】 | ZHK</title>
+  <title>题解 P2821 【变幻数】 | ZHK</title>
   
 
 
@@ -195,7 +188,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="zhk1211.zhaohaikun.cn/2020/03/29/%E9%A2%98%E8%A7%A3-P6249-%E3%80%90%E7%A5%9E%E5%B8%96%E3%80%91/">
+    <link itemprop="mainEntityOfPage" href="zhk1211.zhaohaikun.cn/2020/03/29/%E9%A2%98%E8%A7%A3-P2821-%E3%80%90%E5%8F%98%E5%B9%BB%E6%95%B0%E3%80%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -208,7 +201,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          题解 P6249 【神帖】
+          题解 P2821 【变幻数】
         </h1>
 
         <div class="post-meta">
@@ -219,7 +212,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-29 12:02:00 / 修改时间：12:07:39" itemprop="dateCreated datePublished" datetime="2020-03-29T12:02:00+08:00">2020-03-29</time>
+              <time title="创建时间：2020-03-29 17:55:00 / 修改时间：18:00:02" itemprop="dateCreated datePublished" datetime="2020-03-29T17:55:00+08:00">2020-03-29</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -229,12 +222,6 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E5%BA%93/" itemprop="url" rel="index">
                     <span itemprop="name">洛谷题库</span>
-                  </a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B4%9B%E8%B0%B7%E9%A2%98%E5%BA%93/SS%E5%87%BA%E9%A2%98%E7%BB%84/" itemprop="url" rel="index">
-                    <span itemprop="name">SS出题组</span>
                   </a>
                 </span>
             </span>
@@ -255,8 +242,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/03/29/%E9%A2%98%E8%A7%A3-P6249-%E3%80%90%E7%A5%9E%E5%B8%96%E3%80%91/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/29/%E9%A2%98%E8%A7%A3-P6249-%E3%80%90%E7%A5%9E%E5%B8%96%E3%80%91/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/03/29/%E9%A2%98%E8%A7%A3-P2821-%E3%80%90%E5%8F%98%E5%B9%BB%E6%95%B0%E3%80%91/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/03/29/%E9%A2%98%E8%A7%A3-P2821-%E3%80%90%E5%8F%98%E5%B9%BB%E6%95%B0%E3%80%91/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -266,14 +253,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.5k</span>
+              <span>784</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -285,49 +272,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><a href="https://www.luogu.com.cn/problem/P6249" target="_blank" rel="noopener">题目地址</a> <a href="https://zhaohaikun.blog.luogu.org/solution-p6249" target="_blank" rel="noopener">我在洛谷的题解，大家去点赞啊</a></p>
+        <p><a href="https://www.luogu.com.cn/problem/P2821" target="_blank" rel="noopener">题目地址</a> <a href="https://zhaohaikun.blog.luogu.org/solution-p2821" target="_blank" rel="noopener">我在洛谷的题解，大家去点赞啊</a></p>
 <a id="more"></a>
-<p>这道题目我一看到就想起了经典题——<a href="https://www.luogu.com.cn/problem/P1220" target="_blank" rel="noopener">关路灯</a></p>
-<p>但是时间好像不太好搞啊！</p>
-<p>我们可以枚举时间qwq</p>
-<p>考虑 $4$ 维 $dp$ $f_{i,j,t,0/1}$ 表示 $zrl$ 看了第 $i$ 页到第 $j$ 页，此时时间为 $t$。</p>
-<p>最后一维</p>
-<ul>
-<li><p>如果是 $0$ 就是在第 $i$ 页。</p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这道题还真是一道好题。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>首先，我们想一想，一个子变幻数要满足什么条件。</p>
+<p><strong>有最大质因子不能超过 $9$ 中的。</strong></p>
+<p>然后，发现 $k$ 的父变幻数最小就 $k$ 从 $9$ 到 $2$ 去分解 $k$，然后存起来，最后再反着输出。</p>
+<p>为什么？</p>
+<ol>
+<li><p>为了 $k$ 的父变幻数最小，我们第 $1$ 个要保证位数尽量的少。</p>
 </li>
-<li><p>如果是 $1$ 就是在第 $j$ 页。</p>
+<li><p>在位数尽量少的前提下，我们要让数尽量小、</p>
 </li>
-</ul>
-<p>为什么这样是对的？</p>
-<p>我们会发现，首先为了最优 $zrl$ 绝对不会刻意地去浪费时间，像这样</p>
-<p><img src="https://i.loli.net/2020/03/29/7CFxNZ5Td934PfQ.jpg" alt="360截图18430707839661.jpg"></p>
-<p><strong>要往左走，一定会超过之前走到最左的点</strong></p>
-<p><strong>要往右走，一定会超过之前走到最右的点</strong></p>
-<p>所以，我们可以开始转移了。</p>
-<ul>
-<li><p>按照上面的结论 $f_{i,j,t,1}$ 有 $2$ 种可能</p>
-<ul>
-<li><p>一种是 $f_{i+1,j,t-(a_{i+1}-a_i),0}$</p>
-<p><img src="https://i.loli.net/2020/03/29/8y6AYmiXVOZE3eC.jpg" alt="360截图17411024463469.jpg"></p>
-</li>
-<li><p>一种是 $f_{i+1,j,t-(a_j-a_i),1}$</p>
-<p><img src="https://i.loli.net/2020/03/29/3pXduqao6vD8kcW.jpg" alt="360截图178606015699100.jpg"></p>
-</li>
-</ul>
-</li>
-<li><p>按照上面的结论 $f_{i,j,t,0}$ 有 $2$ 种可能</p>
-<ul>
-<li><p>一种是 $f_{i,j-1,t-(a_j-a_{j-1}),1}$</p>
-<p><img src="https://i.loli.net/2020/03/29/D2pEfsChBbWP65N.jpg" alt="360截图17860531464236.jpg"></p>
-</li>
-<li><p>一种是 $f_{i,j-1,t-(a_j-a_i),0}$</p>
-<p><img src="https://i.loli.net/2020/03/29/8y6AYmiXVOZE3eC.jpg" alt="360截图17411024463469.jpg"></p>
-</li>
-</ul>
-</li>
-</ul>
-<p>代码就很好写了：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> x,v,t;</span><br><span class="line">&#125;a[<span class="number">210</span>];</span><br><span class="line">ll f[<span class="number">210</span>][<span class="number">210</span>][<span class="number">510</span>][<span class="number">2</span>],n,ans;<span class="comment">//不开long long见祖宗！</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(node a,node b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.x&lt;b.x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">work</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;<span class="comment">//算能否get到快乐值</span></span><br><span class="line">	<span class="keyword">if</span>(a[y].t&gt;=x)<span class="keyword">return</span> a[y].v;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">cin</span>&gt;&gt;a[i].x&gt;&gt;a[i].v&gt;&gt;a[i].t;</span><br><span class="line">	n++;<span class="comment">//这里的话，我来解释一下，首先有可能所有帖子的页面都&gt;0或&lt;0，zrl也可能只向左走或只向又走。</span></span><br><span class="line">	sort(a+<span class="number">1</span>,a+n+<span class="number">1</span>,cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> len=<span class="number">1</span>;len&lt;=n;len++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i+len&lt;=n;i++)&#123;</span><br><span class="line">			<span class="keyword">int</span> j=i+len;</span><br><span class="line">			<span class="keyword">if</span>(a[i].x&gt;<span class="number">0</span>||a[j].x&lt;<span class="number">0</span>)<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">int</span> x=min(<span class="built_in">abs</span>(a[i].x),<span class="built_in">abs</span>(a[j].x))+a[j].x-a[i].x;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> t=x;t&lt;=<span class="number">500</span>;t++)&#123;</span><br><span class="line">				f[i][j][t][<span class="number">0</span>]=max(f[i+<span class="number">1</span>][j][max(t-(a[i+<span class="number">1</span>].x-a[i].x),<span class="number">0</span>)][<span class="number">0</span>],f[i+<span class="number">1</span>][j][max(t-(a[j].x-a[i].x),<span class="number">0</span>)][<span class="number">1</span>] )+work(t,i);<span class="comment">//优美的转态转移方程。</span></span><br><span class="line">				f[i][j][t][<span class="number">1</span>]=max(f[i][j<span class="number">-1</span>][max(t-(a[j].x-a[i].x),<span class="number">0</span>)][<span class="number">0</span>],f[i][j<span class="number">-1</span>][max(t-(a[j].x-a[j<span class="number">-1</span>].x),<span class="number">0</span>)][<span class="number">1</span>] )+work(t,j);</span><br><span class="line">				ans=max(ans,max(f[i][j][t][<span class="number">0</span>],f[i][j][t][<span class="number">1</span>]));<span class="comment">//优美的转态转移方程。</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans;<span class="comment">//输出</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> x=<span class="number">9</span>,a[<span class="number">1010</span>],len,l=<span class="number">1</span>;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;v;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> ch=getchar();</span><br><span class="line">	<span class="keyword">for</span>(;!<span class="built_in">isdigit</span>(ch);ch=getchar());</span><br><span class="line">	<span class="keyword">for</span>(;<span class="built_in">isdigit</span>(ch);ch=getchar())a[++len]=ch-<span class="string">'0'</span>;<span class="comment">//读入</span></span><br><span class="line">	<span class="keyword">while</span>(x&gt;=<span class="number">2</span>)&#123;</span><br><span class="line">		<span class="keyword">int</span> y=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)&#123;</span><br><span class="line">			y=y*<span class="number">10</span>+a[i];</span><br><span class="line">			y%=x;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(y)x--;<span class="comment">//如果不能整除</span></span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			v.push_back(x);<span class="comment">//存入</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)&#123;</span><br><span class="line">				y=y*<span class="number">10</span>+a[i];</span><br><span class="line">				a[i]=y/x;y%=x;<span class="comment">//除</span></span><br><span class="line">			&#125;<span class="keyword">if</span>(a[l]==<span class="number">0</span>)l++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">if</span>(len!=l)<span class="built_in">puts</span>(<span class="string">"There is no such number!"</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">for</span>(<span class="keyword">int</span> i=v.size()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)<span class="built_in">cout</span>&lt;&lt;v[i];<span class="comment">//反着输出</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>如果有问题，大家可以在评论区写下来，让这篇题解更加完善。</p>
+
     </div>
 
     
@@ -336,9 +296,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag"><i class="fa fa-tag"></i> 排序</a>
-              <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i> dp</a>
-              <a href="/tags/%E5%8C%BA%E9%97%B4dp/" rel="tag"><i class="fa fa-tag"></i> 区间dp</a>
+              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"><i class="fa fa-tag"></i> 贪心</a>
+              <a href="/tags/%E9%AB%98%E7%B2%BE/" rel="tag"><i class="fa fa-tag"></i> 高精</a>
           </div>
 
         
@@ -347,13 +306,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/27/%E8%A7%A3-P4344-%E3%80%90-SHOI2015-%E8%84%91%E6%B4%9E%E6%B2%BB%E7%96%97%E4%BB%AA%E3%80%91/" rel="prev" title="题解 P4344 【[SHOI2015]脑洞治疗仪】">
-      <i class="fa fa-chevron-left"></i> 题解 P4344 【[SHOI2015]脑洞治疗仪】
+    <a href="/2020/03/29/%E9%A2%98%E8%A7%A3-P6249-%E3%80%90%E7%A5%9E%E5%B8%96%E3%80%91/" rel="prev" title="题解 P6249 【神帖】">
+      <i class="fa fa-chevron-left"></i> 题解 P6249 【神帖】
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/03/29/%E9%A2%98%E8%A7%A3-P2821-%E3%80%90%E5%8F%98%E5%B9%BB%E6%95%B0%E3%80%91/" rel="next" title="题解 P2821 【变幻数】">
-      题解 P2821 【变幻数】 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -423,6 +379,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.1.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
