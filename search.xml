@@ -1,6 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>题解 P6249 【神帖】</title>
+    <url>/2020/03/29/%E9%A2%98%E8%A7%A3-P6249-%E3%80%90%E7%A5%9E%E5%B8%96%E3%80%91/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P6249" target="_blank" rel="noopener">题目地址</a> <a href="https://zhaohaikun.blog.luogu.org/solution-p6249" target="_blank" rel="noopener">我在洛谷的题解，大家去点赞啊</a></p>
+<a id="more"></a>
+<p>这道题目我一看到就想起了经典题——<a href="https://www.luogu.com.cn/problem/P1220" target="_blank" rel="noopener">关路灯</a></p>
+<p>但是时间好像不太好搞啊！</p>
+<p>我们可以枚举时间qwq</p>
+<p>考虑 $4$ 维 $dp$ $f_{i,j,t,0/1}$ 表示 $zrl$ 看了第 $i$ 页到第 $j$ 页，此时时间为 $t$。</p>
+<p>最后一维</p>
+<ul>
+<li><p>如果是 $0$ 就是在第 $i$ 页。</p>
+</li>
+<li><p>如果是 $1$ 就是在第 $j$ 页。</p>
+</li>
+</ul>
+<p>为什么这样是对的？</p>
+<p>我们会发现，首先为了最优 $zrl$ 绝对不会刻意地去浪费时间，像这样</p>
+<p><img src="https://i.loli.net/2020/03/29/7CFxNZ5Td934PfQ.jpg" alt="360截图18430707839661.jpg"></p>
+<p><strong>要往左走，一定会超过之前走到最左的点</strong></p>
+<p><strong>要往右走，一定会超过之前走到最右的点</strong></p>
+<p>所以，我们可以开始转移了。</p>
+<ul>
+<li><p>按照上面的结论 $f_{i,j,t,1}$ 有 $2$ 种可能</p>
+<ul>
+<li><p>一种是 $f_{i+1,j,t-(a_{i+1}-a_i),0}$</p>
+<p><img src="https://i.loli.net/2020/03/29/8y6AYmiXVOZE3eC.jpg" alt="360截图17411024463469.jpg"></p>
+</li>
+<li><p>一种是 $f_{i+1,j,t-(a_j-a_i),1}$</p>
+<p><img src="https://i.loli.net/2020/03/29/3pXduqao6vD8kcW.jpg" alt="360截图178606015699100.jpg"></p>
+</li>
+</ul>
+</li>
+<li><p>按照上面的结论 $f_{i,j,t,0}$ 有 $2$ 种可能</p>
+<ul>
+<li><p>一种是 $f_{i,j-1,t-(a_j-a_{j-1}),1}$</p>
+<p><img src="https://i.loli.net/2020/03/29/D2pEfsChBbWP65N.jpg" alt="360截图17860531464236.jpg"></p>
+</li>
+<li><p>一种是 $f_{i,j-1,t-(a_j-a_i),0}$</p>
+<p><img src="https://i.loli.net/2020/03/29/8y6AYmiXVOZE3eC.jpg" alt="360截图17411024463469.jpg"></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>代码就很好写了：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> x,v,t;</span><br><span class="line">&#125;a[<span class="number">210</span>];</span><br><span class="line">ll f[<span class="number">210</span>][<span class="number">210</span>][<span class="number">510</span>][<span class="number">2</span>],n,ans;<span class="comment">//不开long long见祖宗！</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(node a,node b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a.x&lt;b.x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">work</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;<span class="comment">//算能否get到快乐值</span></span><br><span class="line">	<span class="keyword">if</span>(a[y].t&gt;=x)<span class="keyword">return</span> a[y].v;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">cin</span>&gt;&gt;a[i].x&gt;&gt;a[i].v&gt;&gt;a[i].t;</span><br><span class="line">	n++;<span class="comment">//这里的话，我来解释一下，首先有可能所有帖子的页面都&gt;0或&lt;0，zrl也可能只向左走或只向又走。</span></span><br><span class="line">	sort(a+<span class="number">1</span>,a+n+<span class="number">1</span>,cmp);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> len=<span class="number">1</span>;len&lt;=n;len++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i+len&lt;=n;i++)&#123;</span><br><span class="line">			<span class="keyword">int</span> j=i+len;</span><br><span class="line">			<span class="keyword">if</span>(a[i].x&gt;<span class="number">0</span>||a[j].x&lt;<span class="number">0</span>)<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">int</span> x=min(<span class="built_in">abs</span>(a[i].x),<span class="built_in">abs</span>(a[j].x))+a[j].x-a[i].x;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> t=x;t&lt;=<span class="number">500</span>;t++)&#123;</span><br><span class="line">				f[i][j][t][<span class="number">0</span>]=max(f[i+<span class="number">1</span>][j][max(t-(a[i+<span class="number">1</span>].x-a[i].x),<span class="number">0</span>)][<span class="number">0</span>],f[i+<span class="number">1</span>][j][max(t-(a[j].x-a[i].x),<span class="number">0</span>)][<span class="number">1</span>] )+work(t,i);<span class="comment">//优美的转态转移方程。</span></span><br><span class="line">				f[i][j][t][<span class="number">1</span>]=max(f[i][j<span class="number">-1</span>][max(t-(a[j].x-a[i].x),<span class="number">0</span>)][<span class="number">0</span>],f[i][j<span class="number">-1</span>][max(t-(a[j].x-a[j<span class="number">-1</span>].x),<span class="number">0</span>)][<span class="number">1</span>] )+work(t,j);</span><br><span class="line">				ans=max(ans,max(f[i][j][t][<span class="number">0</span>],f[i][j][t][<span class="number">1</span>]));<span class="comment">//优美的转态转移方程。</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;ans;<span class="comment">//输出</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>洛谷题库</category>
+        <category>SS出题组</category>
+      </categories>
+      <tags>
+        <tag>排序</tag>
+        <tag>dp</tag>
+        <tag>区间dp</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>题解 P4344 【[SHOI2015]脑洞治疗仪】</title>
     <url>/2020/03/27/%E8%A7%A3-P4344-%E3%80%90-SHOI2015-%E8%84%91%E6%B4%9E%E6%B2%BB%E7%96%97%E4%BB%AA%E3%80%91/</url>
     <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P4344" target="_blank" rel="noopener">题目地址</a> <a href="https://zhaohaikun.blog.luogu.org/solution-p4344" target="_blank" rel="noopener">我在洛谷的题解，大家去点赞啊</a></p>
@@ -819,29 +875,6 @@
       </tags>
   </entry>
   <entry>
-    <title>题解 P1748 【H数】</title>
-    <url>/2020/02/21/%E9%A2%98%E8%A7%A3%20P1748%20%E3%80%90H%E6%95%B0%E3%80%91/</url>
-    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P1748" target="_blank" rel="noopener">题目地址</a> <a href="https://zhaohaikun.blog.luogu.org/solution-p1748" target="_blank" rel="noopener">我在洛谷的题解，大家去点赞啊</a></p>
-<a id="more"></a>
-<h1 id="我来讲讲-dp-的做法"><a href="#我来讲讲-dp-的做法" class="headerlink" title="我来讲讲 $dp$ 的做法"></a>我来讲讲 $dp$ 的做法</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>昨天 $PHY$ 大佬问我，这题怎么做？考虑到他没学过 $set$ 、 $priority_queue$ 和 $queue$ 。之后，我就想到了可以用 $dp$ 来解决这道题。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="设置状态"><a href="#设置状态" class="headerlink" title="设置状态"></a>设置状态</h3><p>很显然，我们可以用 $f[i]$ 表示第$i$个数是多少。</p>
-<h3 id="转移"><a href="#转移" class="headerlink" title="转移"></a>转移</h3><p>第$i$个$H$数是多少，我们显然应该从前面的$i-1$个数去分别$\times2$、$\times3$、$\times5$、$\times7$中取比第$i-1$个$H$数大的最小数。</p>
-<h3 id="边界条件"><a href="#边界条件" class="headerlink" title="边界条件"></a>边界条件</h3><p>$f_1=1$是很显然的</p>
-<p>此外还要注意$f_0=0$</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>我们现在就可以开始写代码了</p>
-<p><strong>注意开$long$ $long$</strong></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;FF)</span></span>&#123;</span><br><span class="line">    T RR=<span class="number">1</span>;FF=<span class="number">0</span>;<span class="keyword">char</span> CH=getchar();</span><br><span class="line">    <span class="keyword">for</span>(;!<span class="built_in">isdigit</span>(CH);CH=getchar())<span class="keyword">if</span>(CH==<span class="string">'-'</span>)RR=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;<span class="built_in">isdigit</span>(CH);CH=getchar())FF=(FF&lt;&lt;<span class="number">1</span>)+(FF&lt;&lt;<span class="number">3</span>)+(CH^<span class="number">48</span>);</span><br><span class="line">    FF*=RR;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(T x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;<span class="number">0</span>)<span class="built_in">putchar</span>(<span class="string">'-'</span>),x*=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(x&gt;<span class="number">9</span>)write(x/<span class="number">10</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x%<span class="number">10</span>+<span class="number">48</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[<span class="number">10010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(f,<span class="number">127</span>,<span class="keyword">sizeof</span>(f));<span class="comment">//为了找最小，我们最开始就得赋成最大</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    read(n);</span><br><span class="line">    f[<span class="number">0</span>]=<span class="number">0</span>;<span class="comment">//初始化</span></span><br><span class="line">    f[<span class="number">1</span>]=<span class="number">1</span>;<span class="comment">//初始化</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>;j&gt;=<span class="number">1</span>;j--)</span><br><span class="line">            <span class="keyword">if</span>(f[j]*<span class="number">2</span>&gt;f[i<span class="number">-1</span>])f[i]=min(f[i],f[j]*<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(f[j]*<span class="number">3</span>&gt;f[i<span class="number">-1</span>])f[i]=min(f[i],f[j]*<span class="number">3</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(f[j]*<span class="number">5</span>&gt;f[i<span class="number">-1</span>])f[i]=min(f[i],f[j]*<span class="number">5</span>);</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span>(f[j]*<span class="number">7</span>&gt;f[i<span class="number">-1</span>])f[i]=min(f[i],f[j]*<span class="number">7</span>);</span><br><span class="line">                        <span class="keyword">else</span> <span class="keyword">break</span>;<span class="comment">//优化</span></span><br><span class="line">    write(f[n]);<span class="comment">//输出</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这个代码还是很简短的，十分好写，希望大家以后学习也能好好想想一题多解</p>
-<p>最后来求一下赞和评论！</p>
-]]></content>
-      <categories>
-        <category>洛谷题库</category>
-      </categories>
-      <tags>
-        <tag>dp</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>题解 P1052 【过河】</title>
     <url>/2020/02/21/%E9%A2%98%E8%A7%A3%20P1052%20%E3%80%90%E8%BF%87%E6%B2%B3%E3%80%91/</url>
     <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P1052" target="_blank" rel="noopener">题目地址</a> <a href="https://zhaohaikun.blog.luogu.org/solution-p1052" target="_blank" rel="noopener">我在洛谷的题解，大家去点赞啊</a></p>
@@ -865,6 +898,29 @@
       <tags>
         <tag>dp</tag>
         <tag>离散化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>题解 P1748 【H数】</title>
+    <url>/2020/02/21/%E9%A2%98%E8%A7%A3%20P1748%20%E3%80%90H%E6%95%B0%E3%80%91/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P1748" target="_blank" rel="noopener">题目地址</a> <a href="https://zhaohaikun.blog.luogu.org/solution-p1748" target="_blank" rel="noopener">我在洛谷的题解，大家去点赞啊</a></p>
+<a id="more"></a>
+<h1 id="我来讲讲-dp-的做法"><a href="#我来讲讲-dp-的做法" class="headerlink" title="我来讲讲 $dp$ 的做法"></a>我来讲讲 $dp$ 的做法</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>昨天 $PHY$ 大佬问我，这题怎么做？考虑到他没学过 $set$ 、 $priority_queue$ 和 $queue$ 。之后，我就想到了可以用 $dp$ 来解决这道题。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="设置状态"><a href="#设置状态" class="headerlink" title="设置状态"></a>设置状态</h3><p>很显然，我们可以用 $f[i]$ 表示第$i$个数是多少。</p>
+<h3 id="转移"><a href="#转移" class="headerlink" title="转移"></a>转移</h3><p>第$i$个$H$数是多少，我们显然应该从前面的$i-1$个数去分别$\times2$、$\times3$、$\times5$、$\times7$中取比第$i-1$个$H$数大的最小数。</p>
+<h3 id="边界条件"><a href="#边界条件" class="headerlink" title="边界条件"></a>边界条件</h3><p>$f_1=1$是很显然的</p>
+<p>此外还要注意$f_0=0$</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>我们现在就可以开始写代码了</p>
+<p><strong>注意开$long$ $long$</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;FF)</span></span>&#123;</span><br><span class="line">    T RR=<span class="number">1</span>;FF=<span class="number">0</span>;<span class="keyword">char</span> CH=getchar();</span><br><span class="line">    <span class="keyword">for</span>(;!<span class="built_in">isdigit</span>(CH);CH=getchar())<span class="keyword">if</span>(CH==<span class="string">'-'</span>)RR=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;<span class="built_in">isdigit</span>(CH);CH=getchar())FF=(FF&lt;&lt;<span class="number">1</span>)+(FF&lt;&lt;<span class="number">3</span>)+(CH^<span class="number">48</span>);</span><br><span class="line">    FF*=RR;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">void</span> <span class="title">write</span><span class="params">(T x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;<span class="number">0</span>)<span class="built_in">putchar</span>(<span class="string">'-'</span>),x*=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(x&gt;<span class="number">9</span>)write(x/<span class="number">10</span>);</span><br><span class="line">    <span class="built_in">putchar</span>(x%<span class="number">10</span>+<span class="number">48</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[<span class="number">10010</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(f,<span class="number">127</span>,<span class="keyword">sizeof</span>(f));<span class="comment">//为了找最小，我们最开始就得赋成最大</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    read(n);</span><br><span class="line">    f[<span class="number">0</span>]=<span class="number">0</span>;<span class="comment">//初始化</span></span><br><span class="line">    f[<span class="number">1</span>]=<span class="number">1</span>;<span class="comment">//初始化</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>;j&gt;=<span class="number">1</span>;j--)</span><br><span class="line">            <span class="keyword">if</span>(f[j]*<span class="number">2</span>&gt;f[i<span class="number">-1</span>])f[i]=min(f[i],f[j]*<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(f[j]*<span class="number">3</span>&gt;f[i<span class="number">-1</span>])f[i]=min(f[i],f[j]*<span class="number">3</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(f[j]*<span class="number">5</span>&gt;f[i<span class="number">-1</span>])f[i]=min(f[i],f[j]*<span class="number">5</span>);</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span>(f[j]*<span class="number">7</span>&gt;f[i<span class="number">-1</span>])f[i]=min(f[i],f[j]*<span class="number">7</span>);</span><br><span class="line">                        <span class="keyword">else</span> <span class="keyword">break</span>;<span class="comment">//优化</span></span><br><span class="line">    write(f[n]);<span class="comment">//输出</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>这个代码还是很简短的，十分好写，希望大家以后学习也能好好想想一题多解</p>
+<p>最后来求一下赞和评论！</p>
+]]></content>
+      <categories>
+        <category>洛谷题库</category>
+      </categories>
+      <tags>
+        <tag>dp</tag>
       </tags>
   </entry>
   <entry>
