@@ -254,9 +254,9 @@
         <tag>模拟</tag>
         <tag>排序</tag>
         <tag>STL-priority_queue</tag>
+        <tag>搜索</tag>
         <tag>枚举</tag>
         <tag>暴力</tag>
-        <tag>搜索</tag>
         <tag>贪心</tag>
         <tag>数论，数学</tag>
         <tag>位运算</tag>
@@ -328,9 +328,9 @@
         <category>模拟赛</category>
       </categories>
       <tags>
+        <tag>搜索</tag>
         <tag>枚举</tag>
         <tag>暴力</tag>
-        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -707,9 +707,9 @@
         <category>usaco</category>
       </categories>
       <tags>
+        <tag>bfs</tag>
         <tag>搜索</tag>
         <tag>位运算</tag>
-        <tag>bfs</tag>
       </tags>
   </entry>
   <entry>
@@ -814,8 +814,8 @@
       </categories>
       <tags>
         <tag>搜索</tag>
-        <tag>记忆化</tag>
         <tag>状压</tag>
+        <tag>记忆化</tag>
         <tag>STL-vector</tag>
       </tags>
   </entry>
@@ -924,9 +924,9 @@
       <tags>
         <tag>二分</tag>
         <tag>模拟</tag>
-        <tag>搜索</tag>
         <tag>bfs</tag>
         <tag>dij</tag>
+        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -1094,8 +1094,8 @@
         <category>noip普及组</category>
       </categories>
       <tags>
-        <tag>搜索</tag>
         <tag>bfs</tag>
+        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
