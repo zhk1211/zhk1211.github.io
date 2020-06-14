@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>题解 P1558 【色板游戏】</title>
+    <url>/2020/06/14/%E8%A7%A3-P1558-%E3%80%90%E8%89%B2%E6%9D%BF%E6%B8%B8%E6%88%8F%E3%80%91/</url>
+    <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P1558" target="_blank" rel="noopener">题目地址</a> <a href="https://zhaohaikun.blog.luogu.org/solution-p1558" target="_blank" rel="noopener">我在洛谷的题解，大家去点赞啊</a></p>
+<a id="more"></a>
+<p><a href="https://www.luogu.com.cn/problem/P1558" target="_blank" rel="noopener">题面</a></p>
+<blockquote>
+<p>色板长度为 $L$，$L$ 是一个正整数，所以我们可以均匀地将它划分成 $L$ 块 $1$ 厘米长的小方格。并从左到右标记为 $1, 2, … L$。</p>
+<p>现在色板上只有一个颜色，老师告诉阿宝在色板上只能做两件事：</p>
+<ol>
+<li><p>“C A B C” 指在 $A$ 到 $B$ 号方格中涂上颜色 <code>C</code>。</p>
+</li>
+<li><p>“P A B” 指老师的提问：$A$ 到 $B$ 号方格中有几种颜色。</p>
+</li>
+</ol>
+<p>学校的颜料盒中一共有 $T$ 种颜料。为简便起见，我们把他们标记为 $1, 2, … T$. 开始时色板上原有的颜色就为 $1$ 号色。 面对如此复杂的问题，阿宝向你求助，你能帮助他吗？</p>
+</blockquote>
+<p>这道题目，我们发现 $1\leq t\leq 30$，$t$ 的值非常小。</p>
+<p>考虑建 $t$ 棵线段树，每颗线段树维护是否有这种颜色，需要区间全部清零和区间全部赋值。</p>
+<p>我使用的是封装数据结构，注释写的很清楚了</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ls num&lt;&lt;1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> rs num&lt;&lt;1|1</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;FF)</span></span>&#123;</span><br><span class="line">	T RR=<span class="number">1</span>;FF=<span class="number">0</span>;<span class="keyword">char</span> CH=getchar();</span><br><span class="line">	<span class="keyword">for</span>(;!<span class="built_in">isdigit</span>(CH);CH=getchar())<span class="keyword">if</span>(CH==<span class="string">'-'</span>)RR=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(;<span class="built_in">isdigit</span>(CH);CH=getchar())FF=(FF&lt;&lt;<span class="number">1</span>)+(FF&lt;&lt;<span class="number">3</span>)+(CH^<span class="number">48</span>);</span><br><span class="line">	FF*=RR;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN=<span class="number">1e5</span>+<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> a[MAXN];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Line_Tree</span>&#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">Tree</span>&#123;</span></span><br><span class="line">		<span class="keyword">int</span> l,r,lazy;<span class="comment">//lazy:1为区间赋值，2为区间清零</span></span><br><span class="line">		<span class="keyword">bool</span> f;</span><br><span class="line">	&#125;t[MAXN&lt;&lt;<span class="number">2</span>];</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">		t[num].f=(t[ls].f||t[rs].f);<span class="comment">//只要有一个部分有这种颜色，就说明这个区间有这种颜色。</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">pushdown</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(t[num].lazy)&#123;</span><br><span class="line">			t[ls].lazy=t[rs].lazy=t[num].lazy;<span class="comment">//lazy的传递，由于是区间覆盖，所以直接赋值</span></span><br><span class="line">			t[ls].f=t[rs].f=(t[num].lazy==<span class="number">1</span>);<span class="comment">//1为区间赋值，2为区间清零</span></span><br><span class="line">			t[num].lazy=<span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> num,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">		t[num].l=l;t[num].r=r;t[num].lazy=<span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">			t[num].f=(a[l]==x);<span class="comment">//显然QAQ</span></span><br><span class="line">			<span class="keyword">return</span>;<span class="comment">//直接return</span></span><br><span class="line">		&#125;<span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">		build(ls,l,mid,x);</span><br><span class="line">		build(rs,mid+<span class="number">1</span>,r,x);</span><br><span class="line">		pushup(num);<span class="comment">//注意pushup</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">change1</span><span class="params">(<span class="keyword">int</span> num,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(t[num].l&gt;=l&amp;&amp;t[num].r&lt;=r)&#123;</span><br><span class="line">			t[num].lazy=<span class="number">1</span>;<span class="comment">//打标记</span></span><br><span class="line">			t[num].f=<span class="literal">true</span>;<span class="comment">//直接操作</span></span><br><span class="line">			<span class="keyword">return</span>;<span class="comment">//直接return</span></span><br><span class="line">		&#125;pushdown(num);<span class="comment">//注意标记下传</span></span><br><span class="line">		<span class="keyword">if</span>(t[ls].r&gt;=l)change1(ls,l,r);</span><br><span class="line">		<span class="keyword">if</span>(t[rs].l&lt;=r)change1(rs,l,r);</span><br><span class="line">		pushup(num);<span class="comment">//注意pushup</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">change2</span><span class="params">(<span class="keyword">int</span> num,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(t[num].l&gt;=l&amp;&amp;t[num].r&lt;=r)&#123;</span><br><span class="line">			t[num].lazy=<span class="number">2</span>;<span class="comment">//打标记</span></span><br><span class="line">			t[num].f=<span class="literal">false</span>;<span class="comment">//直接操作</span></span><br><span class="line">			<span class="keyword">return</span>;<span class="comment">//直接return</span></span><br><span class="line">		&#125;pushdown(num);<span class="comment">//注意标记下传</span></span><br><span class="line">		<span class="keyword">if</span>(t[ls].r&gt;=l)change2(ls,l,r);</span><br><span class="line">		<span class="keyword">if</span>(t[rs].l&lt;=r)change2(rs,l,r);</span><br><span class="line">		pushup(num);<span class="comment">//注意pushup</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> num,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(t[num].l&gt;=l&amp;&amp;t[num].r&lt;=r)<span class="keyword">return</span> t[num].f;<span class="comment">//直接看</span></span><br><span class="line">		pushdown(num);<span class="comment">//注意标记下传</span></span><br><span class="line">		<span class="keyword">if</span>(t[ls].r&lt;l)<span class="keyword">return</span> query(rs,l,r);</span><br><span class="line">		<span class="keyword">if</span>(t[rs].l&gt;r)<span class="keyword">return</span> query(ls,l,r);</span><br><span class="line">		<span class="keyword">return</span> (query(ls,l,r)||query(rs,l,r));<span class="comment">//只要有一个是就是了</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;T[<span class="number">32</span>];<span class="comment">//线段树</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,t,E;read(n);read(t);read(E);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)a[i]=<span class="number">1</span>;<span class="comment">//初始化</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;i++)T[i].build(<span class="number">1</span>,<span class="number">1</span>,n,i);<span class="comment">//初始化</span></span><br><span class="line">	<span class="keyword">while</span>(E--)&#123;</span><br><span class="line">		<span class="keyword">char</span> f=getchar();<span class="keyword">int</span> a,b,c;</span><br><span class="line">		<span class="keyword">for</span>(;f!=<span class="string">'C'</span>&amp;&amp;f!=<span class="string">'P'</span>;)f=getchar();</span><br><span class="line">		read(a);read(b);<span class="keyword">if</span>(a&gt;b)swap(a,b);</span><br><span class="line">		<span class="keyword">if</span>(f==<span class="string">'C'</span>)&#123;</span><br><span class="line">			read(c);</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;i++)<span class="comment">//枚举颜色</span></span><br><span class="line">				<span class="keyword">if</span>(i==c)T[i].change1(<span class="number">1</span>,a,b);<span class="comment">//区间赋值</span></span><br><span class="line">				<span class="keyword">else</span> T[i].change2(<span class="number">1</span>,a,b);<span class="comment">//区间清零</span></span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">int</span> s=<span class="number">0</span>;<span class="comment">//计数器</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=t;i++)<span class="comment">//枚举颜色</span></span><br><span class="line">				<span class="keyword">if</span>(T[i].query(<span class="number">1</span>,a,b))s++;<span class="comment">//如果有这种颜色</span></span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,s);<span class="comment">//输出</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>洛谷题库</category>
+      </categories>
+      <tags>
+        <tag>lazy_tag</tag>
+        <tag>线段树</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>题解 P6282 【[USACO20OPEN]Cereal S】</title>
     <url>/2020/05/30/%E9%A2%98%E8%A7%A3-P6282-%E3%80%90-USACO20OPEN-Cereal-S%E3%80%91/</url>
     <content><![CDATA[<p><a href="https://www.luogu.com.cn/problem/P6282" target="_blank" rel="noopener">题目地址</a> <a href="https://zhaohaikun.blog.luogu.org/solution-p6282" target="_blank" rel="noopener">我在洛谷的题解，大家去点赞啊</a></p>
@@ -803,8 +832,8 @@ x+y=k-A-B\\
       </categories>
       <tags>
         <tag>二分</tag>
-        <tag>线段树</tag>
         <tag>lazy_tag</tag>
+        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
@@ -879,9 +908,9 @@ x+y=k-A-B\\
       </categories>
       <tags>
         <tag>模拟</tag>
+        <tag>搜索</tag>
         <tag>排序</tag>
         <tag>STL-priority_queue</tag>
-        <tag>搜索</tag>
         <tag>枚举</tag>
         <tag>暴力</tag>
         <tag>贪心</tag>
@@ -1341,9 +1370,9 @@ x+y=k-A-B\\
         <category>usaco</category>
       </categories>
       <tags>
+        <tag>bfs</tag>
         <tag>搜索</tag>
         <tag>位运算</tag>
-        <tag>bfs</tag>
       </tags>
   </entry>
   <entry>
@@ -1558,9 +1587,9 @@ x+y=k-A-B\\
       <tags>
         <tag>二分</tag>
         <tag>模拟</tag>
-        <tag>搜索</tag>
         <tag>bfs</tag>
         <tag>dij</tag>
+        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
@@ -1728,8 +1757,8 @@ x+y=k-A-B\\
         <category>noip普及组</category>
       </categories>
       <tags>
-        <tag>搜索</tag>
         <tag>bfs</tag>
+        <tag>搜索</tag>
       </tags>
   </entry>
   <entry>
