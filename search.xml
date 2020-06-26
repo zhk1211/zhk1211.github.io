@@ -9,13 +9,13 @@
 <p>诶，炸了就得自己承担，吸取经验下次不要再犯才是最重要的（自我安慰。。。）</p>
 <h1 id="Day"><a href="#Day" class="headerlink" title="$Day -?$"></a>$Day -?$</h1><p>得知了有这场比赛，名肯定是要报的，但是真的有点不情愿——这场比赛主要是小学生的，所以，对于我来说不拿第 $1$ ，第 $2$ 显然是说不过去。。。</p>
 <p>但愿不会出意外吧……</p>
-<h1 id="Day-1"><a href="#Day-1" class="headerlink" title="$Day -1$"></a>$Day -1$</h1><p>知道了规则，感觉挺意外的——还要开摄像头和麦克风。当然，这是好事，不让濮某阳这样的同学勿入作弊的歧途</p>
+<h1 id="Day-1"><a href="#Day-1" class="headerlink" title="$Day -1$"></a>$Day -1$</h1><p>知道了规则，感觉挺意外的——还要开摄像头和麦克风。当然，这是好事，不让濮某阳这样的同学误入作弊的歧途</p>
 <h1 id="Day-0"><a href="#Day-0" class="headerlink" title="$Day 0$"></a>$Day 0$</h1><p>作业多多多，睡前都在做作业，怕不好明天考试还会去做作业（<del>直播写作业我怕不是要翻车，原形毕露了</del>~</p>
-<h1 id="Day-1-1"><a href="#Day-1-1" class="headerlink" title="$Day 1$"></a>$Day 1$</h1><p>出题人没给我留下机会/kk</p>
+<h1 id="Day-1-1"><a href="#Day-1-1" class="headerlink" title="$Day 1$"></a>$Day 1$</h1><p>可惜出题人没给我留下机会/kk</p>
 <h2 id="T-1"><a href="#T-1" class="headerlink" title="$T_1$"></a>$T_1$</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
 <p>2020年春节，新型冠状病毒(后文简称新冠病毒)肆虐，居民必须佩戴口罩方能出门，一时之间口罩成为紧缺物资，各地政府为了避免出现哄抢现象，纷纷出台各种措施，限制购买口罩的数量。淘淘所在社区就规定必须持身份证到指定药房排队购买一次性口罩，并且每户每天只能派出一人购买，每次限购k(k&gt;1)只。每次出门采购一次性口罩，将消耗家里原有一次性口罩1只。由于药房每天能够供应的一次性口罩是有限的，并不能保证排队的人都能买到，也就是说买到了就赚到k-1只，买不到就亏1只。已知淘淘家里原有一次性口罩n只，出门若干次之后，家里的一次性口罩变成了t只，请问淘淘至少出门了几次？</p>
 </blockquote>
-<h3 id="做法-amp-想法"><a href="#做法-amp-想法" class="headerlink" title="做法&amp;想法"></a>做法&amp;想法</h3><p>做的听顺利，应该不大会翻车。</p>
+<h3 id="做法-amp-想法"><a href="#做法-amp-想法" class="headerlink" title="做法&amp;想法"></a>做法&amp;想法</h3><p>做得挺顺利，应该不大会翻车。</p>
 <p>我们显然有个贪心，显然有一种策略——我们绝对不会先去赚 $k-1$ 只，在去亏 $k-1$ 只，因为题目求的是最少出门次数。</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;FF)</span></span>&#123;</span><br><span class="line">	T RR=<span class="number">1</span>;FF=<span class="number">0</span>;<span class="keyword">char</span> CH=getchar();</span><br><span class="line">	<span class="keyword">for</span>(;!<span class="built_in">isdigit</span>(CH);CH=getchar())<span class="keyword">if</span>(CH==<span class="string">'-'</span>)RR=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(;<span class="built_in">isdigit</span>(CH);CH=getchar())FF=(FF&lt;&lt;<span class="number">1</span>)+(FF&lt;&lt;<span class="number">3</span>)+(CH^<span class="number">48</span>);</span><br><span class="line">	FF*=RR;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,t,k,ans=<span class="number">0</span>;read(n);read(k);read(t);k--;</span><br><span class="line">	<span class="keyword">if</span>(n&gt;=t)<span class="keyword">return</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,n-t),<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> x=t-n;</span><br><span class="line">	<span class="keyword">if</span>(x%k==<span class="number">0</span>)ans+=x/k;</span><br><span class="line">	<span class="keyword">else</span> ans+=x/k+<span class="number">1</span>;</span><br><span class="line">	n+=ans*k;</span><br><span class="line">	ans+=n-t;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="T-2"><a href="#T-2" class="headerlink" title="$T_2$"></a>$T_2$</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><blockquote>
@@ -40,13 +40,13 @@
 </blockquote>
 <h3 id="做法-amp-想法-2"><a href="#做法-amp-想法-2" class="headerlink" title="做法&amp;想法"></a>做法&amp;想法</h3><p>PS：这题折腾了半个多小时，有难度的。</p>
 <p>首先，我们将 $X$、$Y$ 和 $Z$ 用数论的形式表示一下。</p>
-<script type="math/tex; mode=display">X=\prod\limits_{p_i\in prime}p_i^{a_i}</script><script type="math/tex; mode=display">Y=\prod\limits_{p_i\in prime}p_i^{b_i}</script><script type="math/tex; mode=display">Z=\prod\limits_{p_i\in prime}p_i^{\max(a_i,b_i)}</script><p>那么， $Z\div Y$ 就等于</p>
+<script type="math/tex; mode=display">X=\prod\limits_{p_i\in prime}p_i^{a_i}</script><script type="math/tex; mode=display">Y=\prod\limits_{p_i\in prime}p_i^{b_i}</script><script type="math/tex; mode=display">Z=\prod\limits_{p_i\in prime}p_i^{\max(a_i,b_i)}</script><p>那么， $Z\div X$ 就等于</p>
 <script type="math/tex; mode=display">\prod\limits_{p_i\in prime}p_i^{f(a_i,b_i)\times (b_i-a_i)}</script><p>其中，$f$ 函数的定义如下：</p>
 <p>当 $f(x,y)$ 中，$x&gt;y$ 时，$f(x,y)$ 为 $0$；反之 $x \leq y$ 时，$f(x,y)$ 为 $1$。</p>
 <p><strong>因为我们要 $Y$ 尽量小，所以，当 $a_i\geq b_i$ 时，我们需要让 $b_i=0$</strong></p>
 <p>所以，$Y$ 就等于</p>
-<script type="math/tex; mode=display">\prod\limits_{p_i\in prime}p_i^{k(a_i,\max(a_i,b_i))\times \max(a_i,b_i)}</script><p>其中，$k$ 函数的定义如下：</p>
-<p>当 $k(x,y)$ 中，$x=y$ 时，$k(x,y)$ 为 $0$；反之 $x \geq y$ 时，$k(x,y)$ 为 $1$。</p>
+<script type="math/tex; mode=display">\prod\limits_{p_i\in prime}p_i^{k(b_i,\max(a_i,b_i)\times (b_i-a_i)}</script><p>其中，$k$ 函数的定义如下：</p>
+<p>当 $k(x,y)$ 中，$x=y$ 时，$k(x,y)$ 为 $1$；反之 $x \neq y$ 时，$k(x,y)$ 为 $0$。</p>
 <p>我们考虑实际意义，上述式子 $Z\div X$ 就是 $Y$ 比 $X$ 多的因子。</p>
 <p>举个例子：$X=24,Z=360$</p>
 <p>$Z\div X=360\div 24=15=3^1\times 5^1$</p>
@@ -124,6 +124,12 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;<span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;FF)</span></span>&#123;</span><br><span class="line">	T RR=<span class="number">1</span>;FF=<span class="number">0</span>;<span class="keyword">char</span> CH=getchar();</span><br><span class="line">	<span class="keyword">for</span>(;!<span class="built_in">isdigit</span>(CH);CH=getchar())<span class="keyword">if</span>(CH==<span class="string">'-'</span>)RR=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(;<span class="built_in">isdigit</span>(CH);CH=getchar())FF=(FF&lt;&lt;<span class="number">1</span>)+(FF&lt;&lt;<span class="number">3</span>)+(CH^<span class="number">48</span>);</span><br><span class="line">	FF*=RR;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">gcd</span><span class="params">(ll x,ll y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x%y==<span class="number">0</span>)<span class="keyword">return</span> y;</span><br><span class="line">	<span class="keyword">return</span> gcd(y,x%y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">ans1</span><span class="params">(ll x,ll z)</span></span>&#123;</span><br><span class="line">	ll y=z/x;</span><br><span class="line">	<span class="keyword">while</span>(gcd(x,y)!=<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">int</span> a=gcd(x,y);</span><br><span class="line">		y*=a;x/=a;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">ans2</span><span class="params">(ll x,ll z)</span></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=z;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(x*i/gcd(i,x)==z)<span class="keyword">return</span> i;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> s=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">		ll x,y,z;x=rand()%<span class="number">100</span>+<span class="number">1</span>;z=(rand()%<span class="number">100</span>+<span class="number">1</span>)*x;</span><br><span class="line">		<span class="comment">// cout&lt;&lt;x&lt;&lt;" "&lt;&lt;z&lt;&lt;" "&lt;&lt;ans2(x,z)&lt;&lt;endl;</span></span><br><span class="line">		<span class="keyword">if</span>(ans1(x,z)!=ans2(x,z))&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="string">" "</span>&lt;&lt;z&lt;&lt;<span class="string">" "</span>&lt;&lt;ans2(x,z)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,++s);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="Day-1"><a href="#Day-1" class="headerlink" title="$Day ?$"></a>$Day ?$</h1><p>惊喜地发现自己炸成这样还有 $RK2$！真是奇迹，看来我还是不错的QAQ</p>
 ]]></content>
+      <categories>
+        <category>游记</category>
+      </categories>
+      <tags>
+        <tag>游记</tag>
+      </tags>
   </entry>
   <entry>
     <title>题解 P1558 【色板游戏】</title>
@@ -558,6 +564,39 @@ x+y=k-A-B\\
       </tags>
   </entry>
   <entry>
+    <title>NOI Online Round 3 PJ 游记</title>
+    <url>/2020/05/30/postNOI-Online-Round-3-PJ-%E6%B8%B8%E8%AE%B0/</url>
+    <content><![CDATA[<p>这篇总的题解蒟蒻写了 $3.5h s$！作为回报，你们是不是应该去<a href="https://zhaohaikun.blog.luogu.org/" target="_blank" rel="noopener">$ZHK$ 的洛谷博客</a>里给 $ZHK$ 的所有题解点赞呢！</p>
+<a id="more"></a>
+<h1 id="Day-21"><a href="#Day-21" class="headerlink" title="$Day -21$"></a>$Day -21$</h1><p>火速报名了 $NOI-Online$ <del>想成为 $\texttt{JS-00001}$ 啊</del>qwq。。。</p>
+<p>实际：$JS-00383$</p>
+<h1 id="Day-20-sim-1"><a href="#Day-20-sim-1" class="headerlink" title="$Day -20\sim -1$"></a>$Day -20\sim -1$</h1><p>自闭与于文化课。。。QAQ</p>
+<h1 id="Day-0"><a href="#Day-0" class="headerlink" title="$Day 0$"></a>$Day 0$</h1><p>去打羽毛球了，所以试机咕咕咕了。。。</p>
+<p>自己家的电脑，自己家的网，为什么要去登录啊！（登不上显然是CCF的问题哈）</p>
+<p>打完羽毛球顺便做完了作业，明天全力 $NOI Online$ 了。</p>
+<h1 id="Day-1"><a href="#Day-1" class="headerlink" title="$Day 1$"></a>$Day 1$</h1><p>考 $PJ$ 前就知道自己 $TG$ 已经没了，已经炸了。。。</p>
+<p>但是，炸了都炸了又有什么办法呢？</p>
+<p>或许……</p>
+<p>啊！整个人都有点萎靡不振了，但是 $PJ$ 还要硬着头皮上啊！</p>
+<p>开题直接看 $T1$，挺裸的诶，我会哈（事实证明比 $TG$ 的 $T1$ 难QAQ）</p>
+<p>很快就开始做 $T2$ 了，简单的一个 $BFS$<del>BFW</del> 找联通块，似乎也并不难。。。</p>
+<p>看 $T3$ ，<del>感觉这次 $PJ$ 前 $25\%$ 的分数先说不定需要达到 $300$ 分啊</del> 我谔谔。。。</p>
+<p>至于 $T3$，我写了个二进制拆分。</p>
+<p>写完就交了，样例过了也不拍了。。。（爆零的前奏。。。）</p>
+<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>成功完完。。。</p>
+<p>$T1$ 数组开小了，$T3$ 变量写错了。。。</p>
+<p>而这些毒瘤的样例都没能查出来。。。</p>
+<p>自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了</p>
+<p>哎，为什么我总是没啊！</p>
+]]></content>
+      <categories>
+        <category>游记</category>
+      </categories>
+      <tags>
+        <tag>游记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NOI Online Round 3 TG 游记</title>
     <url>/2020/05/30/postNOI-Online-Round-3-TG-%E6%B8%B8%E8%AE%B0/</url>
     <content><![CDATA[<p>这篇总的题解蒟蒻写了 $3.5h s$！作为回报，你们是不是应该去<a href="https://zhaohaikun.blog.luogu.org/" target="_blank" rel="noopener">$ZHK$ 的洛谷博客</a>里给 $ZHK$ 的所有题解点赞呢！</p>
@@ -599,39 +638,6 @@ x+y=k-A-B\\
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">23464</span><br><span class="line">215307</span><br><span class="line">215547</span><br></pre></td></tr></table></figure>
 <p>之后就去看 $T3$ 了，$T3$ 难的要死，不会不会。。。</p>
 <h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>$2020-5-24 13:44$ 发现自己 $T2$ 炸了，没了。。。</p>
-]]></content>
-      <categories>
-        <category>游记</category>
-      </categories>
-      <tags>
-        <tag>游记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NOI Online Round 3 PJ 游记</title>
-    <url>/2020/05/30/postNOI-Online-Round-3-PJ-%E6%B8%B8%E8%AE%B0/</url>
-    <content><![CDATA[<p>这篇总的题解蒟蒻写了 $3.5h s$！作为回报，你们是不是应该去<a href="https://zhaohaikun.blog.luogu.org/" target="_blank" rel="noopener">$ZHK$ 的洛谷博客</a>里给 $ZHK$ 的所有题解点赞呢！</p>
-<a id="more"></a>
-<h1 id="Day-21"><a href="#Day-21" class="headerlink" title="$Day -21$"></a>$Day -21$</h1><p>火速报名了 $NOI-Online$ <del>想成为 $\texttt{JS-00001}$ 啊</del>qwq。。。</p>
-<p>实际：$JS-00383$</p>
-<h1 id="Day-20-sim-1"><a href="#Day-20-sim-1" class="headerlink" title="$Day -20\sim -1$"></a>$Day -20\sim -1$</h1><p>自闭与于文化课。。。QAQ</p>
-<h1 id="Day-0"><a href="#Day-0" class="headerlink" title="$Day 0$"></a>$Day 0$</h1><p>去打羽毛球了，所以试机咕咕咕了。。。</p>
-<p>自己家的电脑，自己家的网，为什么要去登录啊！（登不上显然是CCF的问题哈）</p>
-<p>打完羽毛球顺便做完了作业，明天全力 $NOI Online$ 了。</p>
-<h1 id="Day-1"><a href="#Day-1" class="headerlink" title="$Day 1$"></a>$Day 1$</h1><p>考 $PJ$ 前就知道自己 $TG$ 已经没了，已经炸了。。。</p>
-<p>但是，炸了都炸了又有什么办法呢？</p>
-<p>或许……</p>
-<p>啊！整个人都有点萎靡不振了，但是 $PJ$ 还要硬着头皮上啊！</p>
-<p>开题直接看 $T1$，挺裸的诶，我会哈（事实证明比 $TG$ 的 $T1$ 难QAQ）</p>
-<p>很快就开始做 $T2$ 了，简单的一个 $BFS$<del>BFW</del> 找联通块，似乎也并不难。。。</p>
-<p>看 $T3$ ，<del>感觉这次 $PJ$ 前 $25\%$ 的分数先说不定需要达到 $300$ 分啊</del> 我谔谔。。。</p>
-<p>至于 $T3$，我写了个二进制拆分。</p>
-<p>写完就交了，样例过了也不拍了。。。（爆零的前奏。。。）</p>
-<h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>成功完完。。。</p>
-<p>$T1$ 数组开小了，$T3$ 变量写错了。。。</p>
-<p>而这些毒瘤的样例都没能查出来。。。</p>
-<p>自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了自闭了</p>
-<p>哎，为什么我总是没啊！</p>
 ]]></content>
       <categories>
         <category>游记</category>
